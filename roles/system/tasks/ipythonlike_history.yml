@@ -1,0 +1,9 @@
+---
+- name: Enabling ipython like history for all users
+  lineinfile:
+    dest: /etc/inputrc
+    regexp: "{{ item.regexp }}"
+    line: "{{ item.line }}"
+  with_items:
+    - { regexp: '# ipython like history-search-backward', line: '"\e[A": history-search-backward # ipython like history-search-backward' }
+    - { regexp: '# ipython like history-search-forward',  line: '"\e[B": history-search-forward # ipython like history-search-forward' }

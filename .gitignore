@@ -1,0 +1,8 @@
+# Generic
+*.cache
+*.pyc
+
+# IDE
+.idea/
+
+.vagrant/

@@ -1,0 +1,3 @@
+---
+- name: Adding 'username' to sudoers to disable sudo
+  lineinfile: "dest=/etc/sudoers state=present regexp='^{{username}}' line='{{username}} ALL=NOPASSWD: ALL'"

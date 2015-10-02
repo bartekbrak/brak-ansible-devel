@@ -1,0 +1,18 @@
+---
+
+- name: Check if mysql-workbench-community is installed
+  command: dpkg-query -W mysql-workbench-community
+  register: workbench_check
+  failed_when: workbench_check.rc > 1
+  changed_when: workbench_check.rc == 1
+
+- name: Download mysql-workbench-community
+  get_url:
+    url="http://dev.mysql.com/get/Downloads/MySQLGUITools/mysql-workbench-community-6.3.4-1ubu1404-amd64.deb"
+    dest="/tmp/mysql-workbench-community-6.3.4-1ubu1404-amd64.deb"
+  when: workbench_check.rc == 1
+
+- name: Install mysql-workbench-community
+  apt: deb="/tmp/mysql-workbench-community-6.3.4-1ubu1404-amd64.deb"
+  sudo: true
+  when: workbench_check.rc == 1

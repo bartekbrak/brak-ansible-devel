@@ -1,0 +1,11 @@
+---
+- name: Create common user home folders folder.
+  file: path="/home/{{ username }}/{{ item }}" owner={{username}} group={{username}} state=directory
+  with_items:
+    - bin
+    - opt
+    - tmp
+    - workspace
+
+- name: make /tmp user writeable
+  file: path=/tmp mode=0757

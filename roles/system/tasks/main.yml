@@ -1,0 +1,13 @@
+---
+
+# Contains common plays that must be run as first task
+# nothing major, just things that make system easier to use
+
+- name: Use template for  /etc/bash.bashrc
+  template: src=bashrc.j2 dest="/etc/bash.bashrc"
+
+- include: common_folders.yml
+- include: disable_sudo.yml
+- include: ipythonlike_history.yml
+- include: enable_multiverse.yml
+- include: locale.yml

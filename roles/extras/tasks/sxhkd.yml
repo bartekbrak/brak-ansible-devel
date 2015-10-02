@@ -1,0 +1,23 @@
+- name: sxhkd | Check if sxhkd is installed
+  command: sxhkd -v
+  register: sxhkd_check
+  ignore_errors: yes
+
+
+- name: sxhkd | Get dependencies
+  apt: name={{ item }} state=present
+  with_items:
+    - libxcb-util0-dev
+    - libxcb-keysyms1-dev
+
+- name: sxhkd | Download repository
+  sudo_user: "{{username}}"
+  git: repo=https://github.com/baskerville/sxhkd.git dest={{sxhkd_build_dir}}
+  when: sxhkd_check.rc == 2
+
+- name: sxhkd | Build
+  shell: 'cd {{ sxhkd_build_dir }};{{ item }}'
+  with_items:
+    - make
+    - make install
+  when: sxhkd_check.rc == 2

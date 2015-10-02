@@ -1,0 +1,70 @@
+---
+
+# GUI tools
+
+- name: Install GUI tools
+  apt: name={{item}} state=installed
+  with_items:
+    - gimp
+    - keepassx
+    - ttf-dejavu
+    # - libreoffice # FIXME, broken dep libreoffice : Depends: python3-uno
+      # artwiz-fonts # realky cool pixely fonts, but too much hassle to
+      # install automatically http://askubuntu.com/a/135447/35186
+    - vlc
+    - filezilla
+    - gparted
+    - sqlitebrowser
+    - meld
+
+
+- name: Spotify | Add key
+  apt_key: keyserver=keyserver.ubuntu.com id=D2C19886
+
+- name: Spotify | Add repository
+  apt_repository: repo='deb http://repository.spotify.com stable non-free' state=present
+
+- name: Spotify | Install spotify
+  apt: name=spotify-client state=latest
+
+# wine requires i386 arch
+- name: check multiarch
+  command: dpkg --print-foreign-architectures
+  register: fas
+  changed_when: "'i386' not in fas.stdout"
+
+- name: add multiarch
+  command: dpkg --add-architecture i386
+  when: "'i386' not in fas.stdout"
+
+- name: Wine | Add repository
+  apt_repository: repo='ppa:ubuntu-wine/ppa'
+
+- name: Wine | Install wine
+  apt: name=wine1.6
+
+- name: Virtualbox | Add repository
+  apt_repository: repo='deb http://download.virtualbox.org/virtualbox/debian trusty contrib' state=present
+
+- name: Virtualbox | Add key
+  apt_key: url='http://download.virtualbox.org/virtualbox/debian/oracle_vbox.asc' state=present
+
+# Virtualbox 5.0 is not compatible with vagrant, let's wait
+- name: Virtualbox | Install
+  apt: name=virtualbox-4.3 state=latest force=yes
+
+- name: Adding user to vboxusers group
+  user: name={{username}} shell=/bin/bash groups=vboxusers append=yes
+
+
+# FIXME fuck! I can't make this key work. Maybe the key is just invalid?
+# force=yes is not ideal but does th job
+#
+# - name: Tomighty | Add key
+#   apt_key: keyserver=keyserver.ubuntu.com id=FDDDE790
+
+- name: Tomighty | Add repository
+  apt_repository: repo='ppa:pwr22/tomighty' update_cache=yes
+
+- name: Tomighty | Install
+  apt: name=tomighty force=yes

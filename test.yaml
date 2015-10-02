@@ -1,0 +1,13 @@
+---
+
+- hosts: 127.0.0.1
+  connection: local
+  remote_user: root
+  sudo: yes
+  vars:
+    - username: vagrant
+    - email: email@gmail.com
+    - fullname: 'Bartek Brak'
+    - locale_all: en_US.UTF-8
+  roles:
+    - tests

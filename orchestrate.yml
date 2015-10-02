@@ -1,0 +1,31 @@
+---
+
+# Overview: configuring a developer machine in just minutes
+
+- hosts: 127.0.0.1
+  connection: local
+  remote_user: root
+
+  tasks:
+    - name: Checking required variables
+      fail: msg="Variable '{{item}}' is not defined."
+      when: "{{item}} is not defined"
+      with_items:
+        - fullname
+        - email
+        - username
+
+- hosts: 127.0.0.1
+  remote_user: root
+  connection: local
+  sudo: yes
+
+  roles:
+    - system
+    - shell
+    - development
+    # - frontend # re-enable when whens are added
+    - linux-dev
+    - mysql
+    - extras
+    - editors

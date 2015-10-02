@@ -1,0 +1,22 @@
+---
+
+# Development configuration
+- name: Installing Version Control Systems and pip and python dependencies
+  apt: name={{item}} state=present
+  with_items:
+    - git
+    - mercurial
+    - python-pip
+    - python-dev
+    - libxml2-dev
+    - libxslt-dev
+    - libffi-dev
+    # - linux-headers-generic # TODO: what are they for?
+    - libssl-dev
+
+- name: Configuring .gitconfig
+  template: src=gitconfig.j2 dest="/home/{{username}}/.gitconfig" owner={{username}} group={{username}} mode=0644
+
+# Includes development environments
+- include: java.yml
+

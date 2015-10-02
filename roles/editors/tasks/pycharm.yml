@@ -1,0 +1,13 @@
+# tasks file for pycharm
+---
+- name: download pycharm
+  get_url:
+    url: "http://download.jetbrains.com/python/pycharm-{{ pycharm_edition }}-{{ pycharm_version }}.tar.gz"
+    dest: "{{ pycharm_downloads_path }}/pycharm-{{ pycharm_edition }}-{{ pycharm_version }}.tar.gz"
+
+- name: install pycharm
+  unarchive:
+    src: "{{ pycharm_downloads_path }}/pycharm-{{ pycharm_edition }}-{{ pycharm_version }}.tar.gz"
+    dest: "{{ pycharm_install_prefix }}"
+    creates: "{{ pycharm_install_prefix }}/pycharm-{{ pycharm_version }}"
+    copy: false

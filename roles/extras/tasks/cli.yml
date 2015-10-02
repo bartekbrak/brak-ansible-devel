@@ -1,0 +1,34 @@
+# This is a list of packages found on my current machine:
+#
+# arandr dconf-editor ffmpeg filezilla google-chrome-stable gparted keepassx
+# lua5.1 moreutils p7zip-full sqlitebrowser sxhkd tomighty unrar usbmount
+#
+# optional:
+# fglrx filebot gconf-editor kupfer mongodb network-manager-openvpn rabbitmq-server
+
+- name: Various tools
+  apt: name={{item}} state=installed
+  with_items:
+    - arandr
+    - dconf-editor
+    - lua5.1
+    - moreutils
+    - p7zip-full
+    - unrar
+    - usbmount
+    - tree
+    - powertop
+    - python-dev # FIXME, not here!!!
+    - imagemagick
+    - sshfs
+    - terminator
+    - htop
+    - mc
+    - numlockx
+
+# - name: sshfs | Load sshfs to kernal
+#   command: modprobe fuse
+
+
+
+

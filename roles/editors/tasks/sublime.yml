@@ -1,0 +1,14 @@
+---
+- name: subl | Check if subl is installed
+  command: subl -v
+  register: subl_check
+  ignore_errors: yes
+  changed_when: "subl_check.rc == 2"
+
+- name: Download sublimetext .deb file
+  get_url: url={{ sublimetext_url_deb }} dest={{sublimetext_tmp_deb}}
+  when: subl_check.rc == 2
+
+- name: Install subl
+  apt: deb={{sublimetext_tmp_deb}}
+  when: subl_check.rc == 2

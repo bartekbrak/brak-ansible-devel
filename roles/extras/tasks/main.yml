@@ -1,0 +1,9 @@
+---
+
+# Extras
+
+- include: cli.yml
+- include: gui.yml
+- include: google-chrome.yml
+- include: sxhkd.yml
+
