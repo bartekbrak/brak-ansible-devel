@@ -6,4 +6,5 @@
 - include: gui.yml
 - include: google-chrome.yml
 - include: sxhkd.yml
+- include: aptfile.yml
 

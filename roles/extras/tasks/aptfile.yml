@@ -1,0 +1,8 @@
+--- 
+- name: apt-file
+  apt: name=apt-file
+  tags: apt
+
+- name: apt-file refresh index 
+  command: apt-file update 
+  tags: apt
