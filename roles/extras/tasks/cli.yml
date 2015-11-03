@@ -7,7 +7,7 @@
 # fglrx filebot gconf-editor kupfer mongodb network-manager-openvpn rabbitmq-server
 
 - name: Various tools
-  apt: name={{item}} state=installed
+  apt: name={{item}}
   with_items:
     - arandr
     - dconf-editor
@@ -25,6 +25,10 @@
     - htop
     - mc
     - numlockx
+    - most
+    - httpie
+    - nethogs
+
 
 # - name: sshfs | Load sshfs to kernal
 #   command: modprobe fuse

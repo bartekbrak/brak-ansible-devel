@@ -13,6 +13,18 @@
     - libffi-dev
     # - linux-headers-generic # TODO: what are they for?
     - libssl-dev
+    # suggested by pyenv
+    - make
+    - build-essential
+    - libssl-dev
+    - zlib1g-dev
+    - libbz2-dev
+    - libreadline-dev
+    - libsqlite3-dev
+    - wget
+    - curl
+    - llvm
+    - libncurses5-dev    
 
 - name: Configuring .gitconfig
   template: src=gitconfig.j2 dest="/home/{{username}}/.gitconfig" owner={{username}} group={{username}} mode=0644
