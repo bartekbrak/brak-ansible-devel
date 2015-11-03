@@ -26,6 +26,6 @@
     - development
     # - frontend # re-enable when whens are added
     - linux-dev
-    - mysql
+    - databases
     - extras
     - editors

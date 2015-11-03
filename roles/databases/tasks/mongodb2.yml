@@ -1,0 +1,12 @@
+---
+- name: MongoDB | Add key
+  apt_key: keyserver=keyserver.ubuntu.com id=7F0CEB10
+  tags: mongo
+
+- name: MongoDB | Add repository
+  apt_repository: repo='deb http://downloads-distro.mongodb.org/repo/ubuntu-upstart dist 10gen' state=present
+  tags: mongo
+
+- name: MongoDB | Install 
+  apt: name='mongodb-org=2.6.11'
+  tags: mongo
