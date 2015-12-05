@@ -3,7 +3,7 @@ sublimetext_build: 3083
 sublimetext_url_deb: "{{sublimetext_dl_source}}/sublime-text_build-{{sublimetext_build}}_amd64.deb"
 sublimetext_tmp_deb: "/tmp/{{sublimetext_build}}sublimetext.deb"
 
-pycharm_version: 4.5.4
+pycharm_version: 5.0.1
 pycharm_edition: professional
 pycharm_install_prefix: /opt
 pycharm_downloads_path: /tmp
