@@ -1,0 +1,12 @@
+---
+- name: Add 'username' to sudoers to disable sudo
+  lineinfile: "dest=/etc/sudoers state=present regexp='^{{username}}' line='{{username}} ALL=NOPASSWD: ALL'"
+  tags: diabsle_sudo
+
+- name: Disable apport - don't suggest where to install missing command from
+  lineinfile: dest=/etc/default/apport regexp=^enabled= line=enabled=0
+  tags: disable_apport
+
+- name: Disable update pop-ups
+  apt: name=update-notifier state=absent
+  tags: disable_update_notifier

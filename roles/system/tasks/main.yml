@@ -7,7 +7,7 @@
   template: src=bashrc.j2 dest="/etc/bash.bashrc"
 
 - include: common_folders.yml
-- include: disable_sudo.yml
+- include: disable_babysitters.yml
 - include: ipythonlike_history.yml
 - include: enable_multiverse.yml
 - include: locale.yml
