@@ -1,5 +1,8 @@
 ---
 
-- include: neovim.yml
 - include: pycharm.yml
 - include: sublime.yml
+
+- name: Neovim
+  apt: name=neovim
+  tags: neovim
