@@ -28,7 +28,7 @@
     - most
     - httpie
     - nethogs
-
+    - silversearcher-ag
 
 # - name: sshfs | Load sshfs to kernal
 #   command: modprobe fuse
